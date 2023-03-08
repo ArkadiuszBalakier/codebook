@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components";
+import { useTitle } from "../../hooks/useTitle";
 import { FilterBar } from "./components/FilterBar";
 
 export const ProductsList = () => {
+  useTitle("Explore eBooks Collection");
   const [show, setShow] = useState(false);
   const [products, setProducts] = useState([]);
   const search = useLocation().search;
