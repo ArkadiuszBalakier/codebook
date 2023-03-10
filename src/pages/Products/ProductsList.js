@@ -6,10 +6,9 @@ import { useTitle } from "../../hooks/useTitle";
 import { FilterBar } from "./components/FilterBar";
 
 export const ProductsList = () => {
-  // const { ProductsList } = useFilter();
+  const { products, initialProductList } = useFilter();
   useTitle("Explore eBooks Collection");
   const [show, setShow] = useState(false);
-  const [products, setProducts] = useState([]);
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
 
@@ -21,7 +20,7 @@ export const ProductsList = () => {
         }`
       );
       const data = await response.json();
-      setProducts(data);
+      initialProductList(data);
     }
     FetchProducts();
   }, [searchTerm]);
