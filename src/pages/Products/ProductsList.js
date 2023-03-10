@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+
 import { ProductCard } from "../../components";
 import { useFilter } from "../../context";
 import { useTitle } from "../../hooks/useTitle";
@@ -13,17 +15,32 @@ export const ProductsList = () => {
   const searchTerm = new URLSearchParams(search).get("q");
 
   useEffect(() => {
-    async function FetchProducts() {
-      const response = await fetch(
-        `http://localhost:3001/products?name_like=${
-          searchTerm ? searchTerm : ""
-        }`
-      );
-      const data = await response.json();
-      initialProductList(data);
-    }
-    FetchProducts();
+    const fetchPost = async () => {
+      axios
+        .get(
+          `http://localhost:3001/products?name_like=${
+            searchTerm ? searchTerm : ""
+          }`
+        )
+        .then((response) => {
+          initialProductList(response.data);
+        });
+    };
+    fetchPost();
   }, [searchTerm]);
+
+  // useEffect(() => {
+  //   async function FetchProducts() {
+  //     const response = await fetch(
+  //       `http://localhost:3001/products?name_like=${
+  //         searchTerm ? searchTerm : ""
+  //       }`
+  //     );
+  //     const data = await response.json();
+  //     initialProductList(data);
+  //   }
+  //   FetchProducts();
+  // }, [searchTerm]);
 
   return (
     <main>
