@@ -238,5 +238,18 @@
     }
   ],
   "orders": [],
-  "users": []
+  "users": [
+    {
+      "email": "arek@arek.pl",
+      "password": "$2a$10$92XBUwzfK5RhQfdcRXZLUOnDg3i6dlfG3NF9.g1q47z5GWzxWMt4W",
+      "name": "arek",
+      "id": 1
+    },
+    {
+      "email": "arek1@arek.pl",
+      "password": "$2a$10$c/t764A.DoSo6oETmzh3C.AqRJelj9Mf4ZeoAPscvPPhCqoaWvQya",
+      "name": "arek1",
+      "id": 2
+    }
+  ]
 }
