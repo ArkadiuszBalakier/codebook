@@ -250,6 +250,12 @@
       "password": "$2a$10$c/t764A.DoSo6oETmzh3C.AqRJelj9Mf4ZeoAPscvPPhCqoaWvQya",
       "name": "arek1",
       "id": 2
+    },
+    {
+      "email": "martyna@martyna.pl",
+      "password": "$2a$10$vH.h/WLmQKSa8.SLBBQ6b.4gWWMshzWUe8ut1jqKoiL69t2ny0EgK",
+      "name": "Martyna",
+      "id": 3
     }
   ]
 }
