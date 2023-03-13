@@ -49,8 +49,11 @@ export const ProductCard = ({ product }) => {
           </span>
           {!inCart && (
             <button
+              disabled={product.in_stock ? "" : "disabled"}
               onClick={() => addToCart(product)}
-              className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+              className={`${
+                product.in_stock ? "" : "cursor-not-allowed"
+              } inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800`}
             >
               Add To Cart <i className="ml-1 bi bi-plus-lg"></i>
             </button>
