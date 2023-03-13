@@ -7,6 +7,7 @@ import {
   Register,
   CartPage,
   OrderPage,
+  DashboardPage,
 } from "../pages";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
@@ -34,6 +35,14 @@ export const AllRoutes = () => {
           element={
             <ProtectedRoutes>
               <OrderPage />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoutes>
+              <DashboardPage />
             </ProtectedRoutes>
           }
         />
