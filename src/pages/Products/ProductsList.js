@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-// import axios from "axios";
+import { useTitle } from "../../hooks/useTitle";
+import { useFilter } from "../../context";
 
 import { ProductCard } from "../../components";
-import { useFilter } from "../../context";
-import { useTitle } from "../../hooks/useTitle";
+import { getProductsList } from "../../services";
 import { FilterBar } from "./components/FilterBar";
 
 export const ProductsList = () => {
@@ -14,29 +14,13 @@ export const ProductsList = () => {
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
 
-  // const fetchPost = useCallback(async () => {
-  //   const response = await axios.get(
-  //     `http://localhost:3001/products?name_like=${searchTerm ? searchTerm : ""}`
-  //   );
-  //   initialProductList(response.data);
-  // }, [initialProductList, searchTerm]);
-
-  // useEffect(() => {
-  //   fetchPost();
-  // }, [fetchPost]);
-
   useEffect(() => {
     async function FetchProducts() {
-      const response = await fetch(
-        `http://localhost:3001/products?name_like=${
-          searchTerm ? searchTerm : ""
-        }`
-      );
-      const data = await response.json();
+      const data = await getProductsList(searchTerm);
       initialProductList(data);
     }
     FetchProducts();
-  }, [searchTerm]);
+  }, [searchTerm, initialProductList]);
 
   return (
     <main>

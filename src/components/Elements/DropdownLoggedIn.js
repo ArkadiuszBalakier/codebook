@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getUser, logout } from "../../services";
@@ -7,19 +7,19 @@ export const DropdownLoggedIn = ({ setDropdown }) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
+  const handleLogout = useCallback(() => {
+    logout();
+    setDropdown(false);
+    navigate("/");
+  }, [navigate, setDropdown]);
+
   useEffect(() => {
     async function fetchData() {
       const data = await getUser();
       data.email ? setUser(data) : handleLogout();
     }
     fetchData();
-  }, []);
-
-  function handleLogout() {
-    logout();
-    setDropdown(false);
-    navigate("/");
-  }
+  }, [handleLogout]);
 
   return (
     <div
