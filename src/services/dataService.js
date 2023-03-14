@@ -15,7 +15,7 @@ export async function getUser() {
     },
   };
   const response = await fetch(
-    `http://localhost:3001/600/users/${cbid}`,
+    `${process.env.REACT_APP_HOST}/600/users/${cbid}`,
     requestOptions
   );
   const data = await response.json();
@@ -37,7 +37,7 @@ export async function createOrder(cartList, total, user) {
     },
   };
 
-  const response = await fetch("http://localhost:3001/660/orders", {
+  const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export async function getUserOrders() {
   const { token, cbid } = getSession();
 
   const response = await fetch(
-    `http://localhost:3001/660/orders?user.id=${cbid}`,
+    `${process.env.REACT_APP_HOST}/660/orders?user.id=${cbid}`,
     {
       method: "GET",
       headers: {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
@@ -25,11 +26,11 @@ export const ProductsList = () => {
       }
     }
     fetch();
-  }, [initialProductList, searchTerm]);
+  }, [initialProductList]);
 
   useEffect(() => {
     FetchProducts();
-  }, [searchTerm]);
+  }, []);
 
   return (
     <main>
