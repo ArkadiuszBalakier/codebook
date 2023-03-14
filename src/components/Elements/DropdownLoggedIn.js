@@ -12,7 +12,7 @@ export const DropdownLoggedIn = ({ setDropdown, logOutUser }) => {
     logOutUser();
     setDropdown(false);
     navigate("/");
-  }, [navigate, setDropdown]);
+  }, [navigate, setDropdown, logOutUser]);
 
   useEffect(() => {
     async function fetchData() {
