@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useCart } from "../../context";
-import Logo from "../../assets/logo.png";
 import { Search } from "../Sections/Search";
 import { DropdownLoggedIn, DropdownLoggedOut } from "../index";
+import { getUser } from "../../services";
 
 export const Header = () => {
+  const [user, setUser] = useState({});
   const { cartList } = useCart();
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
@@ -24,16 +25,38 @@ export const Header = () => {
     }
   }, [darkMode]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getUser();
+      if (data.name) {
+        setUser(data);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const logOutUser = () => {
+    setUser({});
+  };
+
   return (
     <header>
       <nav className="bg-white dark:bg-gray-900">
         <div className="border-b border-slate-200 dark:border-b-0 flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-3">
-          <Link to="/" className="flex items-center">
-            <img src={Logo} className="mr-3 h-10" alt="CodeBook Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              CodeBook
-            </span>
-          </Link>
+          <div>
+            <Link to="/" className="flex items-center">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                CodeBook
+              </span>
+            </Link>
+          </div>
+          {user.name && (
+            <div>
+              <span className="text-white mr-3 text-2xl">Welcome:</span>
+              <span className="text-white text-2xl">{user.name}</span>
+            </div>
+          )}
+
           <div className="flex items-center relative">
             <span
               onClick={() => setDarkMode(!darkMode)}
@@ -58,7 +81,10 @@ export const Header = () => {
             ></span>
             {dropdown &&
               (token ? (
-                <DropdownLoggedIn setDropdown={setDropdown} />
+                <DropdownLoggedIn
+                  logOutUser={logOutUser}
+                  setDropdown={setDropdown}
+                />
               ) : (
                 <DropdownLoggedOut setDropdown={setDropdown} />
               ))}
