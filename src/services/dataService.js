@@ -1,6 +1,11 @@
-export async function getUser() {
+function getSession() {
   const token = JSON.parse(sessionStorage.getItem("token"));
   const cbid = JSON.parse(sessionStorage.getItem("cbid"));
+  return { token, cbid };
+}
+
+export async function getUser() {
+  const { token, cbid } = getSession();
 
   const requestOptions = {
     method: "GET",
@@ -19,7 +24,7 @@ export async function getUser() {
 }
 
 export async function createOrder(cartList, total, user) {
-  const token = JSON.parse(sessionStorage.getItem("token"));
+  const { token } = getSession();
 
   const order = {
     cartList: cartList,
@@ -45,8 +50,7 @@ export async function createOrder(cartList, total, user) {
 }
 
 export async function getUserOrders() {
-  const token = JSON.parse(sessionStorage.getItem("token"));
-  const cbid = JSON.parse(sessionStorage.getItem("cbid"));
+  const { token, cbid } = getSession();
 
   const response = await fetch(
     `http://localhost:3001/660/orders?user.id=${cbid}`,
