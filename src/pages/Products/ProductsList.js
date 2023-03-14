@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
 import { useFilter } from "../../context";
@@ -14,13 +14,17 @@ export const ProductsList = () => {
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
 
-  useEffect(() => {
-    async function FetchProducts() {
+  const FetchProducts = useCallback(async () => {
+    async function fetch() {
       const data = await getProductsList(searchTerm);
       initialProductList(data);
     }
+    fetch();
+  }, [initialProductList, searchTerm]);
+
+  useEffect(() => {
     FetchProducts();
-  }, [searchTerm, initialProductList]);
+  }, [searchTerm]);
 
   return (
     <main>

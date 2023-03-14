@@ -8,6 +8,7 @@ import {
   CartPage,
   OrderPage,
   DashboardPage,
+  PageNotFound,
 } from "../pages";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
@@ -46,6 +47,8 @@ export const AllRoutes = () => {
             </ProtectedRoutes>
           }
         />
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
