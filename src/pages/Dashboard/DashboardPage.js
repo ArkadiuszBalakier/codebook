@@ -8,7 +8,7 @@ export const DashboardPage = () => {
 
   useEffect(() => {
     async function fetchOrders() {
-      const data = getUserOrders();
+      const data = await getUserOrders();
       setOrders(data);
     }
     fetchOrders();
