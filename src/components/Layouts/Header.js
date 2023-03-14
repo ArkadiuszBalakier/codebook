@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context";
 import { Search } from "../Sections/Search";
 import { DropdownLoggedIn, DropdownLoggedOut } from "../index";
-import { getUser } from "../../services";
 
 export const Header = () => {
-  const [user, setUser] = useState({});
   const { cartList } = useCart();
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
@@ -25,20 +23,6 @@ export const Header = () => {
     }
   }, [darkMode]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getUser();
-      if (data.name) {
-        setUser(data);
-      }
-    }
-    fetchData();
-  }, []);
-
-  const logOutUser = () => {
-    setUser({});
-  };
-
   return (
     <header>
       <nav className="bg-white dark:bg-gray-900">
@@ -50,12 +34,6 @@ export const Header = () => {
               </span>
             </Link>
           </div>
-          {user.name && (
-            <div>
-              <span className="text-white mr-3 text-2xl">Welcome:</span>
-              <span className="text-white text-2xl">{user.name}</span>
-            </div>
-          )}
 
           <div className="flex items-center relative">
             <span
@@ -81,10 +59,7 @@ export const Header = () => {
             ></span>
             {dropdown &&
               (token ? (
-                <DropdownLoggedIn
-                  logOutUser={logOutUser}
-                  setDropdown={setDropdown}
-                />
+                <DropdownLoggedIn setDropdown={setDropdown} />
               ) : (
                 <DropdownLoggedOut setDropdown={setDropdown} />
               ))}
