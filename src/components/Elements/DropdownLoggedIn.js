@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getUser, logout } from "../../services";
 
-export const DropdownLoggedIn = ({ setDropdown, logOutUser }) => {
+export const DropdownLoggedIn = ({ setDropdown }) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   const handleLogout = useCallback(() => {
     logout();
-    logOutUser();
     setDropdown(false);
     navigate("/");
-  }, [navigate, setDropdown, logOutUser]);
+  }, [navigate, setDropdown]);
 
   useEffect(() => {
     async function fetchData() {
