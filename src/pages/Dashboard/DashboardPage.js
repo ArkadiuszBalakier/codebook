@@ -1,25 +1,14 @@
 import { useEffect, useState } from "react";
 import { DashbaordCard } from "./components/DashboardCart";
 import { DashbaordEmpty } from "./components/DashboardEmpty";
+import { getUserOrders } from "../../services";
 
 export const DashboardPage = () => {
-  const token = JSON.parse(sessionStorage.getItem("token"));
-  const cbid = JSON.parse(sessionStorage.getItem("cbid"));
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     async function fetchOrders() {
-      const response = await fetch(
-        `http://localhost:3001/660/orders?user.id=${cbid}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = await response.json();
+      const data = getUserOrders();
       setOrders(data);
     }
     fetchOrders();
