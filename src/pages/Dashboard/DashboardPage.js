@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { DashbaordCard } from "./components/DashboardCart";
 import { DashbaordEmpty } from "./components/DashboardEmpty";
 import { getUserOrders } from "../../services";
+import { useTitle } from "../../hooks/useTitle";
 
 export const DashboardPage = () => {
+  useTitle("Dashboard");
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {

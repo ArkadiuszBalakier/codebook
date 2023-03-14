@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context";
 import { createOrder, getUser } from "../../../services";
+import { useTitle } from "../../../hooks/useTitle";
 
 export const Checkout = ({ setCheckout }) => {
+  useTitle("Payment");
   const navigate = useNavigate();
   const { total, cartList, clearCart } = useCart();
   const [user, setUser] = useState({});
