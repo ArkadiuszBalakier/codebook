@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DashbaordCart } from "./components/DashboardCart";
+import { DashboardCart } from "./components/DashboardCart";
 import { DashbaordEmpty } from "./components/DashboardEmpty";
 import { getUserOrders } from "../../services";
 import { useTitle } from "../../hooks/useTitle";
@@ -26,7 +26,7 @@ export const DashboardPage = () => {
 
       <section>
         {orders.length &&
-          orders.map((order) => <DashbaordCart key={order.id} order={order} />)}
+          orders.map((order) => <DashboardCart key={order.id} order={order} />)}
       </section>
 
       <section>{!orders.length && <DashbaordEmpty />}</section>
