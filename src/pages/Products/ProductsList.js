@@ -6,6 +6,7 @@ import { useFilter } from "../../context";
 import { ProductCard } from "../../components";
 import { getProductsList } from "../../services";
 import { FilterBar } from "./components/FilterBar";
+import { toast } from "react-toastify";
 
 export const ProductsList = () => {
   const { products, initialProductList } = useFilter();
@@ -16,8 +17,12 @@ export const ProductsList = () => {
 
   const FetchProducts = useCallback(async () => {
     async function fetch() {
-      const data = await getProductsList(searchTerm);
-      initialProductList(data);
+      try {
+        const data = await getProductsList(searchTerm);
+        initialProductList(data);
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
     fetch();
   }, [initialProductList, searchTerm]);
