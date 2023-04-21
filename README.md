@@ -1,3 +1,18 @@
+# CodeBook - ebook store
+
+Web Application to buy books. You can loggin , register user or enter as a guest. You can order , search books or see it details. Add to the cart or remove it from the cart. You have access the dashboard in user panel where u can see your orders. clicking on gear switches display mode from light/dark.
+
+# Technology
+
+React Js , Js , html/css , Tailwind , Google Firebase , React Router with protected routes
+
+# Working Demo 
+
+https://arczibee-codebook.netlify.app/
+
+# Credits 
+Application made with the course : https://www.udemy.com/share/1088m43@CZ1S3bea9D3LRFjDTBFdHaeFOruHjnhvN1jMxoxVu233yxgYnqihH9utovSx0_XUJw==/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
