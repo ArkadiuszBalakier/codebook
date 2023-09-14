@@ -11,7 +11,7 @@ React Js , Js , html/css , Tailwind , Google Firebase , React Router with protec
 https://arczibee-codebook.netlify.app/
 
 # Credits 
-Application made with the course : https://www.udemy.com/share/1088m43@CZ1S3bea9D3LRFjDTBFdHaeFOruHjnhvN1jMxoxVu233yxgYnqihH9utovSx0_XUJw==/
+project created with the help of the course https://www.udemy.com/course/complete-reactjs-masterclass, I'm putting it here as a Github training.
 
 # Getting Started with Create React App
 
